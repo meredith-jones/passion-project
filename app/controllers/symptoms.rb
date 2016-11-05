@@ -1,6 +1,8 @@
 get '/symptoms' do
   # display list of all symptoms
   # erb :'/symptoms/index'
+  @symptoms = current_user.symptoms
+  erb :'symptoms/list'
 end
 
 get '/symptoms/new' do

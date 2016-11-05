@@ -18,6 +18,10 @@ post '/users' do
   end
 end
 
+get '/users/:id' do
+  erb :'users/show'
+end
+
 # Log in
 get '/sessions/new' do
  # new action
@@ -30,7 +34,7 @@ post '/sessions' do
   if user
     session[:user_id] = user.id
     p session
-    redirect '/'
+    erb :'users/show'
   else
     status 422
     @errors = ["Login failed"]
@@ -42,5 +46,5 @@ end
 delete '/logout' do
   # delete session
   session.delete(:user_id)
-  redirect '/'
+  redirect '/sessions/new'
 end

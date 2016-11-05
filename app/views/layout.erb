@@ -18,8 +18,10 @@
   <title></title>
 </head>
 <body>
-  <a href="/index">Home</a><br>
-  <%= erb :'sessions/logout' %>
+  <a href='/'>Home</a><br>
+  <% if logged_in? %>
+    <%= erb :'sessions/logout' %>
+  <% end%>
   <%= yield %>
 </body>
 </html>
