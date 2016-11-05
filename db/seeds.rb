@@ -1,4 +1,4 @@
-paul = User.create(username: "paul123", email: "paul@paul.com", phone: "123-456-789"password: "123")
+paul = User.create(username: "paul123", email: "paul@paul.com", phone: "123-456-789", password: "123")
 bob = User.create(username: "bob123", email: "bob@bob.com", phone: "310-456-789", password: "123")
 
 paul.symptoms << Symptom.create(symptom_name: "headache", severity: 10, notes: "in the front of my head", user_id: 1)
