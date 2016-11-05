@@ -5,8 +5,11 @@
   <li>Date: <%= @symptom.created_at %></li>
 </ul>
 
-<a href="/symptoms">Back to my symptom list</a>
+<a href='/symptoms'>Back to my symptom list</a>
 <br>
 <a href="/symptoms/<%= @symptom.id %>/edit">Edit this symptom</a>
 <br>
-<a href="/symptoms">Delete this symptom</a>
+<form method='post' action='/symptoms/<%= @symptom.id %>'>
+  <input type='hidden' name='_method' value='delete'>
+  <input type='submit' value='Delete entry.'>
+</form>

@@ -37,8 +37,16 @@ end
 
 put '/symptoms/:id' do
   # update a specific symptom
+  # user = User.find_by(name: 'David')
+  # user.update(name: 'Dave')
+  symptom = Symptom.find(params[:id])
+  symptom.update(params[:symptom])
+  redirect '/symptoms'
 end
 
 delete '/symptoms/:id' do
   # delete a specific symptom
+  symptom = Symptom.find(params[:id])
+  symptom.destroy
+  redirect '/symptoms'
 end
