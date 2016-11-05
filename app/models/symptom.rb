@@ -1,3 +1,5 @@
 class Symptom < ActiveRecord::Base
-  # Remember to create a migration!
+  belongs_to :user
+
+  validates :symptom_name, presence: true
 end
