@@ -1,0 +1,12 @@
+<h2>Details about your <%= @symptom.symptom_name %>:</h2>
+<ul>
+  <li>Severity: <%= @symptom.severity %></li>
+  <li>Notes: <%= @symptom.notes %></li>
+  <li>Date: <%= @symptom.created_at %></li>
+</ul>
+
+<a href="/symptoms">Back to my symptom list</a>
+<br>
+<a href="/symptoms/<%= @symptom.id %>/edit">Edit this symptom</a>
+<br>
+<a href="/symptoms">Delete this symptom</a>

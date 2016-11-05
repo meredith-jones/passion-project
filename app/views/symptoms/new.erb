@@ -1,1 +1,14 @@
-create new symptom
+<h1>Add a symptom:</h1>
+<% if @errors %>
+  <% @errors.each do |error| %>
+    <%= error %><br>
+  <% end %>
+<% end %>
+
+<form method='post' action='/symptoms'>
+  <input type='text' name='symptom[symptom_name]' placeholder='enter your symptom'>
+  <input type='text' name='symptom[severity]' placeholder='enter how severe (1-10)'>
+  <input type='text' name='symptom[notes]' placeholder='any other notes'>
+  <input type='hidden' name='symptom[user_id]' value='<%= current_user.id %>'>
+  <input type="submit" value='Add symptom to log!'>
+</form>

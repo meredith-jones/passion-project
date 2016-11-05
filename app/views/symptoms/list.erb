@@ -1,8 +1,9 @@
-
+<h1>Hey, <%= current_user.username %>!</h1>
+<h2>Here's your symptom log:</h2>
+<ul>
 <% @symptoms.each do | symptom | %>
-  <p><%= symptom.symptom_name %>:</p>
-    <ul>
-      <li>Severity: <%= symptom.severity %></li>
-      <li>Notes: <%= symptom.notes %></li>
-    </ul>
+  <li>Symptom: <%= symptom.symptom_name %></li>
+  <li>Date: <%= symptom.created_at %></li>
+  <li><a href="/symptoms/<%= symptom.id %>">View details / Edit / Delete</a></li><br>
 <% end %>
+</ul>
