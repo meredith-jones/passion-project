@@ -1,3 +1,4 @@
+<div id="show-symptom">
 <h2>Details about your <%= @symptom.symptom_name %>:</h2>
 <ul>
   <li>Severity: <%= @symptom.severity %></li>
@@ -9,7 +10,8 @@
 <br>
 <a href="/symptoms/<%= @symptom.id %>/edit">Edit this symptom</a>
 <br>
-<form method='post' action='/symptoms/<%= @symptom.id %>'>
-  <input type='hidden' name='_method' value='delete'>
-  <input type='submit' value='Delete entry.'>
-</form>
+  <form id="delete-symptom" method='post' action='/symptoms/<%= @symptom.id %>'>
+    <input type='hidden' name='_method' value='delete'>
+    <input type='submit' value='Delete entry.'>
+  </form>
+</div>

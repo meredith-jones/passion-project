@@ -1,9 +1,14 @@
-<h1>Hey, <%= current_user.username %>!</h1>
+<div id="list-symptoms">
 <h2>Here's your symptom log:</h2>
 <ul>
 <% @symptoms.each do | symptom | %>
   <li>Symptom: <%= symptom.symptom_name %></li>
   <li>Date: <%= symptom.created_at %></li>
-  <li><a href="/symptoms/<%= symptom.id %>">View details / Edit / Delete</a></li><br>
+  <li>Severity: <%= symptom.severity %></li>
+  <li>Notes: <%= symptom.notes %></li>
+  <li><a href="/symptoms/<%= symptom.id %>">Edit / Delete</a></li><br>
 <% end %>
 </ul>
+</div>
+<br>
+<a href="/symptoms/new">Enter a new symptom</a><br>

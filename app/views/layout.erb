@@ -16,13 +16,10 @@
   <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
   <script src="/js/application.js"></script>
 
-  <title></title>
+  <title>Symptom log</title>
 </head>
 <body>
-  <a href='/'>Home</a><br>
-  <% if logged_in? %>
-    <%= erb :'sessions/logout' %>
-  <% end%>
+  <%= erb :'partials/_header'%>
   <%= yield %>
 </body>
 </html>

@@ -10,7 +10,7 @@ post '/users' do
   user = User.create(params[:user])
   if user.valid?
     session[:user_id] = user.id
-    redirect '/'
+    redirect "/"
   else
     status 422
     @errors = user.errors.full_messages
@@ -34,7 +34,7 @@ post '/sessions' do
   if user
     session[:user_id] = user.id
     p session
-    erb :'users/show'
+    redirect '/'
   else
     status 422
     @errors = ["Login failed"]
