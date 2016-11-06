@@ -1,0 +1,41 @@
+html {
+  background-color: #7D8491;
+  font-family: 'Itim', cursive;
+}
+
+body {
+  margin: 20px;
+  background-color: #C0C5C1;
+  padding: 20px;
+  border-radius: 10px;
+}
+
+h1 {
+  color: #576CA8;
+}
+
+h2 {
+  color: #0FA3B1;
+}
+
+input {
+  border-radius: 7px;
+}
+
+
+.tabs{
+  list-style: none;
+  padding: 10px;
+  text-decoration: none;
+}
+
+.tab {
+  float: left;
+  padding-right: 12px;
+}
+
+a {
+  text-decoration: none;
+}
+
+

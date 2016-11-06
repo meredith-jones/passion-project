@@ -1,0 +1,19 @@
+<div id="edit-symptom">
+  <h1>Edit the info about your <%= @symptom.symptom_name %>:</h1>
+  <% if @errors %>
+    <% @errors.each do |error| %>
+      <%= error %><br>
+    <% end %>
+  <% end %>
+    <form id="edit-symptom-form" method='post' action='/symptoms/<%= @symptom.id %>'>
+      <input type='hidden' name='_method' value='put'>
+      <label for='symptom[symptom_name]'>Symptom:</label>
+      <input type='text' name='symptom[symptom_name]' value="<%= @symptom.symptom_name %>"><br>
+      <label for='symptom[severity]'>Severity:</label>
+      <input type='text' name='symptom[severity]' value="<%= @symptom.severity %>"><br>
+      <label for='symptom[notes]'>Notes:</label>
+      <input type='text' name='symptom[notes]' value="<%= @symptom.notes %>"><br>
+      <input type='hidden' name='symptom[user_id]' value='<%= current_user.id %>'>
+      <input type="submit" value="Update symptom!">
+    </form>
+</div>
