@@ -38,7 +38,7 @@ function addSymptom(){
     var button = $(this);
     var form = $(button.parent());
     var data = form.serialize();
-    console.log(data);
+    // console.log(data);
   $.ajax({
     url: form.attr("action"),
     method: form.attr("method"),
