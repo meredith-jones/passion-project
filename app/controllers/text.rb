@@ -7,7 +7,7 @@
 # @client.account.messages.create(
 #     from: '+12062021955',
 #     to: '+13103652965',
-#     body: 'Hide your keys.'
+#     body: 'Hello there.'
 #   )
 
 # # post '/text' do
