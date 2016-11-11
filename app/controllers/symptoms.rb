@@ -47,19 +47,33 @@ end
 get '/symptoms/:id/edit' do
   # return an HTML form for editing a symptom
   @symptom = Symptom.find(params[:id])
-  erb :'symptoms/edit'
+  if request.xhr?
+    erb :'symptoms/edit', layout: false, locals: {symptom: @symptom}
+  else
+    erb :'symptoms/edit'
+  end
 end
 
 put '/symptoms/:id' do
   # update a specific symptom
   symptom = Symptom.find(params[:id])
   symptom.update(params[:symptom])
-  redirect '/symptoms'
+  @symptoms = current_user.symptoms
+  if request.xhr?
+    erb :'symptoms/_list', layout: false, locals: {symptoms: @symptoms }
+  else
+    erb :'symptoms/_list'
+  end
 end
 
 delete '/symptoms/:id' do
   # delete a specific symptom
   symptom = Symptom.find(params[:id])
   symptom.destroy
-  redirect '/symptoms'
+  @symptoms = current_user.symptoms
+  if request.xhr?
+    erb :'symptoms/_list', layout: false, locals: {symptoms: @symptoms }
+  else
+    redirect '/'
+  end
 end

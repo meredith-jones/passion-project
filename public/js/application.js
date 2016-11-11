@@ -3,24 +3,11 @@ $(document).ready(function() {
   viewSymptomForm();
   addSymptom();
   toggleSymptomDetails();
-
-  $("body").on("click", ".edit-delete", function(event){
-    event.preventDefault();
-    var editLink = $(this);
-    var linkURL = $(editLink.find("a")).attr("href");
-    $.ajax({
-      method: "GET",
-      url: linkURL
-    })
-    .done(function(response){
-      console.log(response);
-      $("#user-info-viewer").empty();
-      $("#user-info-viewer").append(response);
-    })
-  })
-
+  showOneSymptom();
+  showEditForm();
+  submitEditForm();
+  deleteEntry();
 });
-
 
 function toggleSymptomDetails(){
   $("body").on("click", ".symptom-name", function(event){
@@ -42,7 +29,6 @@ function viewSymptoms(){
       $("#user-info-viewer").empty();
       $("#user-info-viewer").append(response);
       $($("body").find("ul.symptom-details")).children().hide();
-      // $(response).hide()
     })
   })
 }
@@ -53,6 +39,38 @@ function viewSymptomForm(){
     $.ajax({
       method: "GET",
       url: "/symptoms/new"
+    })
+    .done(function(response){
+      $("#user-info-viewer").empty();
+      $("#user-info-viewer").append(response);
+    })
+  })
+}
+
+function showOneSymptom(){
+  $("body").on("click", ".edit-delete", function(event){
+    event.preventDefault();
+    var editLink = $(this);
+    var linkURL = $(editLink.find("a")).attr("href");
+    $.ajax({
+      method: "GET",
+      url: linkURL
+    })
+    .done(function(response){
+      $("#user-info-viewer").empty();
+      $("#user-info-viewer").append(response);
+    })
+  })
+}
+
+function showEditForm(){
+  $("body").on("click", ".edit-symptom", function(event){
+    event.preventDefault();
+    var editSymptomLink = $(this);
+    var linkURL = $(editSymptomLink).attr("href");
+    $.ajax({
+      method: "GET",
+      url: linkURL
     })
     .done(function(response){
       $("#user-info-viewer").empty();
@@ -74,11 +92,44 @@ function addSymptom(){
     data: data
   })
   .done(function(response){
-    // console.log(response);
     $("#user-info-viewer").empty();
     $("#user-info-viewer").append(response);
   })
-
   })
-
 }
+
+function submitEditForm(){
+  $("body").on("click", ".submit-edit-button", function(event){
+    event.preventDefault();
+    var submitEditButton = $(this);
+    var form = $(submitEditButton.parent());
+    var data = form.serialize();
+    $.ajax({
+      url: form.attr("action"),
+      method: "PUT",
+      data: data
+    })
+    .done(function(response){
+    $("#user-info-viewer").empty();
+    $("#user-info-viewer").append(response);
+    })
+  })
+}
+
+function deleteEntry(){
+  $("body").on("click", ".delete-entry", function(event){
+    event.preventDefault();
+    var deleteButton = $(this);
+    var form = $(deleteButton.parent());
+    console.log(form);
+    $.ajax({
+      url: form.attr("action"),
+      method: "DELETE"
+    })
+    .done(function(response){
+    $("#user-info-viewer").empty();
+    $("#user-info-viewer").append(response);
+    })
+  })
+}
+
