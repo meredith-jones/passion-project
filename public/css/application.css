@@ -11,6 +11,7 @@ body {
   border-radius: 10px;
 }
 
+
 h1 {
   color: #576CA8;
 }
@@ -39,3 +40,6 @@ a {
   text-decoration: none;
 }
 
+#logout-button{
+  float: right;
+}
