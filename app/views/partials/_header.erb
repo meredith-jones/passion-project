@@ -1,5 +1,4 @@
 <header>
-  <a href='/'>Home</a><br>
   <% if logged_in? %>
     <%= erb :'sessions/logout' %>
     <h1> <%= current_user.username %>'s Symptom Log</h1>

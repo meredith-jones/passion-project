@@ -2,7 +2,11 @@ get '/symptoms' do
   # display list of all symptoms
   # erb :'/symptoms/index'
   @symptoms = current_user.symptoms
+  if request.xhr?
   erb :'symptoms/_list', layout: false, locals: {symptoms: @symptoms }
+  else
+    erb :'symptoms/_list'
+  end
 end
 
 get '/symptoms/new' do
@@ -33,7 +37,11 @@ end
 get '/symptoms/:id' do
   # display a specific symptom
   @symptom = Symptom.find(params[:id])
-  erb :'symptoms/show'
+  if request.xhr?
+    erb :'symptoms/show', layout: false, locals: {symptom: @symptom }
+  else
+    erb :'symptoms/show'
+  end
 end
 
 get '/symptoms/:id/edit' do
@@ -44,8 +52,6 @@ end
 
 put '/symptoms/:id' do
   # update a specific symptom
-  # user = User.find_by(name: 'David')
-  # user.update(name: 'Dave')
   symptom = Symptom.find(params[:id])
   symptom.update(params[:symptom])
   redirect '/symptoms'

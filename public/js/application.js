@@ -2,7 +2,34 @@ $(document).ready(function() {
   viewSymptoms();
   viewSymptomForm();
   addSymptom();
+  toggleSymptomDetails();
+
+  $("body").on("click", ".edit-delete", function(event){
+    event.preventDefault();
+    var editLink = $(this);
+    var linkURL = $(editLink.find("a")).attr("href");
+    $.ajax({
+      method: "GET",
+      url: linkURL
+    })
+    .done(function(response){
+      console.log(response);
+      $("#user-info-viewer").empty();
+      $("#user-info-viewer").append(response);
+    })
+  })
+
 });
+
+
+function toggleSymptomDetails(){
+  $("body").on("click", ".symptom-name", function(event){
+    event.preventDefault();
+    var symptomName = $(this)
+    var symptomDetails = $("body").find(".symptom-details")
+    $(symptomDetails).children().toggle();
+  });
+}
 
 function viewSymptoms(){
     $("#view-symptoms").on("click", "a", function(event){
@@ -14,6 +41,8 @@ function viewSymptoms(){
     .done(function(response){
       $("#user-info-viewer").empty();
       $("#user-info-viewer").append(response);
+      $($("body").find("ul.symptom-details")).children().hide();
+      // $(response).hide()
     })
   })
 }
