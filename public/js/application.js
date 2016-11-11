@@ -7,6 +7,7 @@ $(document).ready(function() {
   showEditForm();
   submitEditForm();
   deleteEntry();
+  goHome();
 });
 
 function toggleSymptomDetails(){
@@ -129,6 +130,21 @@ function deleteEntry(){
     .done(function(response){
     $("#user-info-viewer").empty();
     $("#user-info-viewer").append(response);
+    })
+  })
+}
+
+function goHome(){
+  $("body").on("click", ".go-home", function(event){
+    event.preventDefault();
+    $.ajax({
+      method: "GET",
+      url: "/symptoms"
+    })
+    .done(function(response){
+      $("#user-info-viewer").empty();
+      $("#user-info-viewer").append(response);
+      $($("body").find("ul.symptom-details")).children().hide();
     })
   })
 }
