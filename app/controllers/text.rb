@@ -1,6 +1,8 @@
-# require 'twilio-ruby'
-# require 'sinatra'
 
+get '/test1' do
+    'Hello World! Currently running version ' + Twilio::VERSION + \
+        ' of the twilio-ruby library.'
+end
 
 # @client = Twilio::REST::Client.new ACCOUNT_SID, AUTH_TOKEN
 
