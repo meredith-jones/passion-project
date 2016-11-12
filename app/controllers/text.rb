@@ -1,36 +1,17 @@
-
-get '/test1' do
-    'Hello World! Currently running version ' + Twilio::VERSION + \
-        ' of the twilio-ruby library.'
+post '/text' do
+  twiml = Twilio::TwiML::Response.new do |r|
+    puts "Message #{params['Body']}"
+    puts "from #{params['From']}"
+    r.Message "Added your symptom. To enter more details, visit your symptom log."
+  end
+  @user = User.find_by(phone: params['From'])
+  if @user
+    @symptom = Symptom.create(symptom_name: params['Body'])
+    @user.symptoms << @symptom
+  else
+    twiml = Twilio::TwiML::Response.new do |r|
+      r.Message "Something went wrong."
+    end
+  end
+  twiml.to_xml
 end
-
-# @client = Twilio::REST::Client.new ACCOUNT_SID, AUTH_TOKEN
-
-# @client.account.messages.create(
-#     from: '+12062021955',
-#     to: '+13103652965',
-#     body: 'Hello there.'
-#   )
-
-# # post '/text' do
-# #   puts "Message #{params['Body']}"
-
-# #   # twiml = Twilio::TwiML::Response.new do |r|
-# #   #   r.Message "Symptom added!"
-# #   # end
-# #   # twiml.txt
-
-# # end
-
-# post '/text' do
-#   number = params['From']
-#   body = params['Body']
-
-#   content_type 'text/xml'
-
-#   "<Response>
-#     <Message>
-#       Hello #{number}. You said: #{body}
-#     </Message>
-#   </Response>"
-# end
